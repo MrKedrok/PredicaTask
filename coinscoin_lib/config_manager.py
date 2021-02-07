@@ -18,8 +18,8 @@ class ConfigManager:
         return Config(
             scope_of_data_to_analyze=main_section["scope_of_data_to_analyze"],
             data_dump_task=main_section["data_dump_task"],
-            internal_redis_connection_string=main_section["internal_redis_connection_string"]
-
+            internal_redis_connection_string=main_section["internal_redis_connection_string"],
+            mssql_connection=main_section["mssql_connection"]
         )
 
     @staticmethod

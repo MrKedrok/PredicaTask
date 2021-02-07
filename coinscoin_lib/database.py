@@ -1,30 +1,6 @@
 import sqlalchemy
 from sqlalchemy.orm.session import sessionmaker, Session
-from skidservice_lib.postgres_session import PostgresSession
-import re
-
-
-class PostgresConnectionParameters:
-    connection_string: str
-
-    def __init__(self, connection_string: str):
-        self.connection_string = connection_string
-        proto, _, user, _, passwd, host, _, db_name = re.search(
-            '(.+://)?((.+(@.+)?):(.+))?@(.+)(:\d+)?/(.+)',
-            connection_string
-        ).groups()
-
-        self.username = user
-        self.password = passwd
-        self.hostname = host
-        self.database = db_name
-
-    def __str__(self):
-        return self.__connection_string
-
-    @property
-    def jdbc_connection_string(self):
-        return f'jdbc:postgresql://{self.hostname}:5432/{self.database}'
+from coinscoin_lib.msql_session import MSSQLSession
 
 
 class Database:
@@ -38,5 +14,5 @@ class Database:
     def get_sa_session(self) -> Session:
         return self.session_maker()
 
-    def get_session(self) -> PostgresSession:
-        return PostgresSession(self.get_sa_session())
+    def get_session(self) -> MSSQLSession:
+        return MSSQLSession(self.get_sa_session())

@@ -1,14 +1,13 @@
 from urllib.parse import urlparse
 from coinscoin_lib.config_manager import ConfigManager
 from coinscoin_lib.database import Database
-from coinscoin_lib.postgres_session import PostgresSession
+from coinscoin_lib.msql_session import MSSQLSession
 
 
 class ResourceManager:
     __database = None
     __redis_cache = None
     __internal_redis = None
-    __spark_ops = None
 
     def __init__(self):
         raise Exception('don''t use it that way')
@@ -17,13 +16,11 @@ class ResourceManager:
     def database():
         if not ResourceManager.__database:
             ResourceManager.__database = Database(
-                connection_string=ConfigManager.get_config().postgresql_connection_string)
+                connection_string=ConfigManager.get_config().mssql_connection)
         return ResourceManager.__database
 
     @staticmethod
-    def db_session() -> PostgresSession:
+    def db_session() -> MSSQLSession:
         return ResourceManager.database().get_session()
-    @staticmethod
-    def db_session() -> PostgresSession:
-        return ResourceManager.database().get_session()
+
 

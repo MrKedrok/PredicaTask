@@ -2,18 +2,29 @@ version: '3'
 services:
 
   worker:
+    container_name: worker
     build:
       dockerfile: Containers/coinscoin-base/Dockerfile
       context: .
     entrypoint: []
     command: ["/docker-entrypoint.sh", "worker"]
 
+  worker2:
+    container_name: worker2
+    build:
+      dockerfile: Containers/mssql-python-pyodbc/Dockerfile
+      context: .
+    entrypoint: []
+    command: ["/docker-entrypoint.sh", "justrun"]
+
 
   coinscoin-db:
+    container_name: coinscoin-db
     ports:
-      - "127.0.0.1:1433:1433"
+    #  - "127.0.0.1:1433:1433"
+      - "1433:1433"
     build:
-      dockerfile: Containers/CoinsCoin-db/Dockerfile
+      dockerfile: Containers/coinscoin-db/Dockerfile
       context: .
     entrypoint: []
     #command: ["/docker-entrypoint.sh", "worker"]
