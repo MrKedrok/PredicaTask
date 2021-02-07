@@ -6,4 +6,4 @@ def test_data_dump():
     expeted_rank = 1
     expeted_symbol = 'BTC'
 
-    DataDump.run_data_dump_master()
+    #DataDump.run_data_dump_master()

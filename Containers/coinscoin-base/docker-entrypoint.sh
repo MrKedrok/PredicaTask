@@ -20,7 +20,7 @@ test*)
     echo "Use docker-compose to setup a complete, isolated environment."
     exit 255
   fi
-  pytest --cov=coinscoin_api --cov=skidservice_lib --cov-report=term -n 3 --cov-config=.coveragerc --cov-fail-under=60 $TEST_PATH/unit/
+  pytest  $TEST_PATH/unit/
   ;;
 *)
   cat <<'###END'

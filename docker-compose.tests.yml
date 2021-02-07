@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tests:
+    build:
+      dockerfile: Containers/coinscoin-base/Dockerfile
+      context: .
+    entrypoint: ["bash"]
+    command: ["/docker-entrypoint.sh", "test"]
+
