@@ -6,8 +6,7 @@ from coinscoin_lib.msql_session import MSSQLSession
 
 class ResourceManager:
     __database = None
-    __redis_cache = None
-    __internal_redis = None
+    __redis = None
 
     def __init__(self):
         raise Exception('don''t use it that way')

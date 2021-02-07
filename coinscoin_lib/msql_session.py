@@ -1,13 +1,7 @@
-from typing import List
 from sqlalchemy.orm.session import Session
-from sqlalchemy import func
 
 
 class MSSQLSession:
-    """
-        Connection credentials comes to class as **kwargs.
-        Fetchall method should be used to small datasets
-    """
 
     def __init__(self, session: Session):
         self.session = session

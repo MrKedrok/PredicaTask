@@ -1,9 +1,3 @@
-import os
-
-TEST_ROOT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tests')
-TEST_DATA_ROOT = os.path.join(TEST_ROOT_PATH, 'data')
-TEST_TMP_ROOT = '/tmp'
-TEST_SHARED_ROOT = '/mnt/sharedvolume'
 
 
 class Config:

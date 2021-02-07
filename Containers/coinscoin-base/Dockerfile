@@ -1,5 +1,9 @@
 FROM python:3.7
 WORKDIR /opt/PredicaTask
+
+RUN apt-get update \
+    && apt-get -y install curl gcc g++
+
 COPY ./requirements.txt /opt/PredicaTask
 COPY ./development_requirements.txt /opt/PredicaTask
 RUN pip3 install -r development_requirements.txt

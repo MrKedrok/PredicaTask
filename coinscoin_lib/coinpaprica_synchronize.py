@@ -3,8 +3,8 @@ from coinscoin_lib.config_manager import ConfigManager
 import pandas as pd
 from datetime import datetime
 
-#scope_of_data_to_analyze = int(ConfigManager.get_config().scope_of_data_to_analyze)
-scope_of_data_to_analyze = 100
+scope_of_data_to_analyze = int(ConfigManager.get_config().scope_of_data_to_analyze)
+
 
 class CoinSynchronize:
 
@@ -36,7 +36,17 @@ class CoinSynchronize:
         for id in CoinSynchronize.get_coins_id().head(scope_of_data_to_analyze):
             data = CoinSynchronize.get_current_value_coin(id)
             data_you_need = data_you_need.append(data, ignore_index=True)
-        added_id_to_df = pd.concat([data_you_need, CoinSynchronize.get_coins_id().head(scope_of_data_to_analyze)], axis=1)
+        added_id_to_df = pd.concat([data_you_need, CoinSynchronize.get_coins_id().head(scope_of_data_to_analyze)],
+                                   axis=1)
+        added_id_to_df = added_id_to_df.rename(
+            columns={'time_close': 'current_time'
+                , 'time_open': 'currect_day'
+                , 'open': 'open_day_value'
+                , 'high': 'high_value_current_day'
+                , 'low': 'low_value_current_day'
+                , 'close': 'current_value_current_day'
+                , 'volume': 'current_volume'
+                , 'id': 'coin_id'})
         return added_id_to_df
 
     @staticmethod
@@ -48,5 +58,7 @@ class CoinSynchronize:
 
     @staticmethod
     def handle():
-        Coins_incremental_data = CoinSynchronize.get_daily_data()
-        Coins_incremental_data.to_csv('daily_dump_'+str(round(int(str(datetime.today().strftime("%M%S%f"))) / 100))+'.csv', index=False)
+        coins_incremental_data = CoinSynchronize.get_daily_data()
+        coins_incremental_data.to_csv(
+            './tmp/current_value_dump_' + str(round(int(str(datetime.today().strftime("%M%S%f"))) / 100)) + '.csv',
+            index=False)

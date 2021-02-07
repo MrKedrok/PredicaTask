@@ -1,5 +1,4 @@
 from coinscoin_lib.config import Config
-import logging as log
 import os
 import configparser
 
@@ -23,17 +22,12 @@ class ConfigManager:
         )
 
     @staticmethod
-    def init_test():
-        log.debug("initializing test configuration")
-        ConfigManager.__current_config = ConfigManager.get_config()
-
-    @staticmethod
     def init_with_file(filename):
         ConfigManager.__current_config = ConfigManager.__get_from_file(filename)
 
     @staticmethod
     def initialize():
-        config_file = os.getenv('COINSCOIN_CONFIG', '/opt/PredicaTask/etc/skidservice.conf')
+        config_file = os.getenv('COINSCOIN_CONFIG', 'C:/Users/karol.kordek/IdeaProjects/PredicaTask-Git/etc/coinscoin.conf')
         ConfigManager.init_with_file(config_file)
 
     @staticmethod
