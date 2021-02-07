@@ -8,6 +8,7 @@ services:
     entrypoint: []
     command: ["/docker-entrypoint.sh", "worker"]
 
+
   coinscoin-db:
     ports:
       - "127.0.0.1:1433:1433"
@@ -37,4 +38,14 @@ services:
       - "127.0.0.1:8081:8081"
     environment:
       REDIS_HOSTS: "CoinsCoin:redis:6379"
+
+  monitor:
+    build:
+      dockerfile: Containers/coinscoin-base/Dockerfile
+      context: .
+    entrypoint: []
+    command: ["flower", "-A", "coinscoin_lib.tasks", "--address=0.0.0.0"]
+    ports:
+      - "127.0.0.1:5555:5555"
+
 
