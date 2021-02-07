@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  worker:
+    build:
+      dockerfile: Containers/coinscoin-base/Dockerfile
+      context: .
+    entrypoint: []
+    command: ["/docker-entrypoint.sh", "worker"]
+
+  coinscoin-db:
+    ports:
+      - "127.0.0.1:1433:1433"
+    build:
+      dockerfile: Containers/CoinsCoin-db/Dockerfile
+      context: .
+    entrypoint: []
+    #command: ["/docker-entrypoint.sh", "worker"]
+
+  management:
+    build:
+      dockerfile: Containers/coinscoin-base/Dockerfile
+      context: .
+    entrypoint: [ ]
+    command: [ "/docker-entrypoint.sh", "justrun"]
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "127.0.0.1:6379:6379"
+
+  redis-commander:
+    image: rediscommander/redis-commander
+    depends_on:
+      - redis
+    ports:
+      - "127.0.0.1:8081:8081"
+    environment:
+      REDIS_HOSTS: "CoinsCoin:redis:6379"
+
