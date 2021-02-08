@@ -37,9 +37,9 @@ I have created 2 instance of application,
 - second is worker for management task, it is coinscoin_lib, that instance has separate container to transform data from coinpaprica to sql server
 
 extra stuff
-- local sql server on a docker with open ports and autorestore database from backup file (/opt/PredicaTask/etc/coinscoin-dev.BAK).
+- local sql server on a docker with open ports and auto restore database from backup file (/opt/PredicaTask/etc/coinscoin-dev.BAK).
 - monitor container to monitor celery queue on flower, access below url 127.0.0.1:5555 when we start redis 
-
+- separate docker-compose for unit tests with tests entrypoint to trigger pytests
 ------------
 
 
@@ -48,6 +48,14 @@ extra stuff
    a. Dimensions: Time and Currency
    b. Facts: exchange rates by time with an aggregating measure
    c. Creativity is very welcome
+   
+#comments
+Did not finish it.I hit the wall in the form docker sql server on ubuntu, that server can cont connect 
+to SSAS because for that connection it is not possible for ubuntu layer, yet. 
+i have spent ~ 4 hours to open connection for that, also i have tried to configure sll connection file, sql driver to older etc.
+For an ubuntu sql server right now i can not connect with SSAS.
+I have start with local sql server, but today i do not have time to finish that task
+
 3. Prepare simple report:
    a. Using Power BI, Reporting Services or Excel (one of those listed)
    b. The report should be based on data from the analytics cube or the database (in the absence of
@@ -56,3 +64,6 @@ extra stuff
    d. It should be feasible to select a specific currency and the time period for which the data is displayed
    e. Creativity is very welcome
    Please send the resulting files with the code (complete Visual Studio project).
+
+#comment
+did not start. Today i do not have time to finish it. I spend to much time toconfigure local einvaroment.
